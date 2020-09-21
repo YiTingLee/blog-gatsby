@@ -1,0 +1,376 @@
+## Created with gatsby-plugin-netlify
+
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: same-origin
+/component---cache-caches-gatsby-plugin-offline-app-shell-js-c9875e2473a7c518755f.js
+  Cache-Control: public, max-age=31536000, immutable
+/styles.cd720fd7fdf31dbefd1a.css
+  Cache-Control: public, max-age=31536000, immutable
+/styles-89fd2ae28bdf06750a71.js
+  Cache-Control: public, max-age=31536000, immutable
+/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-templates-not-found-template-js-ee8d22206af414dec274.js
+  Cache-Control: public, max-age=31536000, immutable
+/1d7a0ef94f880d404b7312b89c0a6747f4e94bce-7ca1d56867ce3061f281.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-templates-tags-list-template-js-dce04658607cdc3ad09c.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-templates-categories-list-template-js-e28883024731ccabe6b3.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-templates-page-template-js-1a0760740b431f1787b5.js
+  Cache-Control: public, max-age=31536000, immutable
+/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-templates-post-template-js-d00b2829c6329ee5a103.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-templates-tag-template-js-e31a0234379397bbec8e.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-templates-category-template-js-a44bbc27fa429da46009.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-templates-index-template-js-a4afb49a71d9ffc4381d.js
+  Cache-Control: public, max-age=31536000, immutable
+/webpack-runtime-7f37afed264a4f14d694.js
+  Cache-Control: public, max-age=31536000, immutable
+/framework-508b8fb69b983ef3dff3.js
+  Cache-Control: public, max-age=31536000, immutable
+/532a2f07-b004a5d2f37fbac8de1a.js
+  Cache-Control: public, max-age=31536000, immutable
+/app-c6508bd24e8ce7c199b6.js
+  Cache-Control: public, max-age=31536000, immutable
+/static/*
+  Cache-Control: public, max-age=31536000, immutable
+/sw.js
+  Cache-Control: no-cache
+/yitinglee.github.io/offline-plugin-app-shell-fallback/
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---cache-caches-gatsby-plugin-offline-app-shell-js-c9875e2473a7c518755f.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/offline-plugin-app-shell-fallback/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/404
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-not-found-template-js-ee8d22206af414dec274.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/404/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/tags
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/1d7a0ef94f880d404b7312b89c0a6747f4e94bce-7ca1d56867ce3061f281.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-tags-list-template-js-dce04658607cdc3ad09c.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/tags/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/categories
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/1d7a0ef94f880d404b7312b89c0a6747f4e94bce-7ca1d56867ce3061f281.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-categories-list-template-js-e28883024731ccabe6b3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/categories/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/pages/about/
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-page-template-js-1a0760740b431f1787b5.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/pages/about/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/pages/contacts/
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-page-template-js-1a0760740b431f1787b5.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/pages/contacts/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/posts/perfecting-the-art-of-perfection
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-post-template-js-d00b2829c6329ee5a103.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/posts/perfecting-the-art-of-perfection/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/posts/the-origins-of-social-stationery-lettering
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-post-template-js-d00b2829c6329ee5a103.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/posts/the-origins-of-social-stationery-lettering/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/posts/a-brief-history-of-typography
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-post-template-js-d00b2829c6329ee5a103.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/posts/a-brief-history-of-typography/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/posts/humane-typography-in-the-digital-age
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-post-template-js-d00b2829c6329ee5a103.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/posts/humane-typography-in-the-digital-age/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/posts/the-birth-of-movable-type
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-post-template-js-d00b2829c6329ee5a103.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/posts/the-birth-of-movable-type/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/tag/design
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-tag-template-js-e31a0234379397bbec8e.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/tag/design/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/tag/gatsby
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-tag-template-js-e31a0234379397bbec8e.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/tag/gatsby/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/tag/handwriting
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-tag-template-js-e31a0234379397bbec8e.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/tag/handwriting/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/tag/helvetica
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-tag-template-js-e31a0234379397bbec8e.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/tag/helvetica/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/tag/history-of-typography
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-tag-template-js-e31a0234379397bbec8e.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/tag/history-of-typography/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/tag/learning-to-write
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-tag-template-js-e31a0234379397bbec8e.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/tag/learning-to-write/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/tag/linotype
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-tag-template-js-e31a0234379397bbec8e.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/tag/linotype/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/tag/monotype
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-tag-template-js-e31a0234379397bbec8e.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/tag/monotype/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/tag/open-source
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-tag-template-js-e31a0234379397bbec8e.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/tag/open-source/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/tag/typography
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-tag-template-js-e31a0234379397bbec8e.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/tag/typography/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/tag/web-development
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-tag-template-js-e31a0234379397bbec8e.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/tag/web-development/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/category/design-culture
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-category-template-js-a44bbc27fa429da46009.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/category/design-culture/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/category/design-inspiration
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-category-template-js-a44bbc27fa429da46009.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/category/design-inspiration/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/category/typography
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-category-template-js-a44bbc27fa429da46009.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/category/typography/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-index-template-js-a4afb49a71d9ffc4381d.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/index/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/page/1
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-index-template-js-a4afb49a71d9ffc4381d.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/page/1/page-data.json>; rel=preload; as=fetch; crossorigin
+/yitinglee.github.io/404.html
+  Link: </yitinglee.github.io/webpack-runtime-7f37afed264a4f14d694.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/app-c6508bd24e8ce7c199b6.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/component---src-templates-not-found-template-js-ee8d22206af414dec274.js>; rel=preload; as=script
+  Link: </yitinglee.github.io/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </yitinglee.github.io/page-data/404.html/page-data.json>; rel=preload; as=fetch; crossorigin
