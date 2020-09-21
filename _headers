@@ -100,6 +100,17 @@
   Link: </blog/component---src-templates-page-template-js-1a0760740b431f1787b5.js>; rel=preload; as=script
   Link: </blog/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </blog/page-data/pages/about/page-data.json>; rel=preload; as=fetch; crossorigin
+/blog/pages/contacts/
+  Link: </blog/webpack-runtime-cecb599587353a60c603.js>; rel=preload; as=script
+  Link: </blog/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </blog/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
+  Link: </blog/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
+  Link: </blog/app-6a71e9437f756639bb00.js>; rel=preload; as=script
+  Link: </blog/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </blog/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
+  Link: </blog/component---src-templates-page-template-js-1a0760740b431f1787b5.js>; rel=preload; as=script
+  Link: </blog/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </blog/page-data/pages/contacts/page-data.json>; rel=preload; as=fetch; crossorigin
 /blog/posts/perfecting-the-art-of-perfection
   Link: </blog/webpack-runtime-cecb599587353a60c603.js>; rel=preload; as=script
   Link: </blog/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
@@ -112,17 +123,6 @@
   Link: </blog/component---src-templates-post-template-js-d00b2829c6329ee5a103.js>; rel=preload; as=script
   Link: </blog/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </blog/page-data/posts/perfecting-the-art-of-perfection/page-data.json>; rel=preload; as=fetch; crossorigin
-/blog/pages/contacts/
-  Link: </blog/webpack-runtime-cecb599587353a60c603.js>; rel=preload; as=script
-  Link: </blog/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
-  Link: </blog/framework-508b8fb69b983ef3dff3.js>; rel=preload; as=script
-  Link: </blog/532a2f07-b004a5d2f37fbac8de1a.js>; rel=preload; as=script
-  Link: </blog/app-6a71e9437f756639bb00.js>; rel=preload; as=script
-  Link: </blog/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
-  Link: </blog/cd95ea5cbd2c605f26db819f07999610c9ff4310-f39dfea63c2e213aa4c0.js>; rel=preload; as=script
-  Link: </blog/component---src-templates-page-template-js-1a0760740b431f1787b5.js>; rel=preload; as=script
-  Link: </blog/page-data/app-data.json>; rel=preload; as=fetch; crossorigin
-  Link: </blog/page-data/pages/contacts/page-data.json>; rel=preload; as=fetch; crossorigin
 /blog/posts/the-origins-of-social-stationery-lettering
   Link: </blog/webpack-runtime-cecb599587353a60c603.js>; rel=preload; as=script
   Link: </blog/styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
