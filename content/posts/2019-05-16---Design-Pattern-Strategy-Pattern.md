@@ -32,8 +32,8 @@ socialImage: ""
  - 設計跑車、腳踏車、玩具車的加速行為
 
 ### 未使用策略模式
-```javascript=
-    Class Car {
+```javascript
+    class Car {
         private mode;
         accelerate() {
             if (mode === 'SportCar') {
@@ -50,13 +50,13 @@ socialImage: ""
 
 ### 策略模式
  - 把加速行為封裝成介面
-```javascript=
+```javascript
     interface AccelerateBehavior {
         function accelerate();
     }
 ```
  - 實現各行為
-```javascript=
+```javascript
     class AccelerateWithEngine implements AccelerateBehavior {
         accelerate() {
             console.log('引擎驅動');
@@ -76,7 +76,7 @@ socialImage: ""
     }
 ```
  - 完成最後的Car及使用範例
-```javascript=
+```javascript
     class Car {
         accelerateBehavior: AccelerateBehavior;
         
@@ -93,7 +93,7 @@ socialImage: ""
         }
     }
 ```
-```javascript=
+```javascript
     const car = new Car(new AccelerateWithEngine());
     car.accelerate(); // 引擎驅動
     car.setAccelerateBehavior(new AccelerateWithBattery());
