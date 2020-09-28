@@ -8,7 +8,7 @@ category: "Design Pattern"
 tags:
   - "Design Pattern"
 description: "使用javascript學習Design Pattern的第一篇 - Strategy Pattern"
-socialImage: "/media/42-line-bible.jpg"
+socialImage: ""
 ---
 
 ## 前言
