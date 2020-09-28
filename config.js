@@ -44,7 +44,8 @@ module.exports = {
       codepen: '',
       youtube: '',
       soundcloud: '',
-      medium: ''
+      medium: '',
+      cakeresume: 'https://www.cakeresume.com/656b08'
     }
   }
 };
