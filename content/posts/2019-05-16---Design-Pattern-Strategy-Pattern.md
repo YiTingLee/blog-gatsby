@@ -52,7 +52,7 @@ socialImage: ""
  - 把加速行為封裝成介面
 ```javascript
     interface AccelerateBehavior {
-        function accelerate();
+        accelerate();
     }
 ```
  - 實現各行為
