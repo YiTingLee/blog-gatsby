@@ -150,3 +150,6 @@ video:1563710179581
 ## 結論
  
  - 我們這次介紹的是Push Model，另外還有Pull Model下次有時間再介紹，但基本上概念是相同的，差別僅在於Observer讀取的方式而已。
+
+### Source Code
+https://github.com/YiTingLee/Design-Pattern/blob/main/observer-pattern/index.ts

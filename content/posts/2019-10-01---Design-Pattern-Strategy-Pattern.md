@@ -102,3 +102,6 @@ socialImage: ""
 
 ## 結論
 由策略模式設計出的物件擁有動態切換加速方式的靈活性，在測試方面也能直接對於加速演算法進行測試，可以避免因為if else造成同一個method越來越大包的問題。假設今天要加入不同的加速方式，只需要擴充加速的Class即可，並不會對原有程式造成任何影響。
+
+### Source Code
+https://github.com/YiTingLee/Design-Pattern/blob/main/strategy-pattern/index.ts
