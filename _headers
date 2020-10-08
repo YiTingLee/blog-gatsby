@@ -114,6 +114,17 @@
   Link: </component---src-templates-post-template-js-56cd3a4df222435a5626.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/posts/design-pattern-strategy-pattern/page-data.json>; rel=preload; as=fetch; crossorigin
+/posts/design-pattern-observer-pattern
+  Link: </webpack-runtime-15016e46ff570c01f044.js>; rel=preload; as=script
+  Link: </styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </framework-23462baa72bf47fe5637.js>; rel=preload; as=script
+  Link: </app-8c95432ed850dc46a1ae.js>; rel=preload; as=script
+  Link: </styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
+  Link: </cd95ea5cbd2c605f26db819f07999610c9ff4310-37cabae5136de4119124.js>; rel=preload; as=script
+  Link: </643651a62fb35a9bb4f20061cb1f214a352d7976-b9206b220415e59bae07.js>; rel=preload; as=script
+  Link: </component---src-templates-post-template-js-56cd3a4df222435a5626.js>; rel=preload; as=script
+  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/posts/design-pattern-observer-pattern/page-data.json>; rel=preload; as=fetch; crossorigin
 /tag/design-pattern
   Link: </webpack-runtime-15016e46ff570c01f044.js>; rel=preload; as=script
   Link: </styles-89fd2ae28bdf06750a71.js>; rel=preload; as=script
