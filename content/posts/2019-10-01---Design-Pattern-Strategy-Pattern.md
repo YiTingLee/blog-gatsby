@@ -1,6 +1,6 @@
 ---
 title: Strategy Pattern
-date: "2019-05-16T21:11:00.000Z"
+date: "2020-10-01T21:11:00.000Z"
 template: "post"
 draft: false
 slug: "design-pattern-strategy-pattern"
