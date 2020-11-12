@@ -77,7 +77,7 @@ select * from test where id = 29;
 
 每當我們建立index時，Database都會幫我們建立一個index table去維護這個Btree，所以index越多則index table當然也越來越多，所需要的空間需求也會隨之增加。
 
-當我們建立Primary以外的index時，基本上原理都是相同的，差別只在於非PK的Btree葉節點的資料內容為PK。
+當我們建立Primary Key以外的index時，基本上原理都是相同的，差別只在於非PK的Btree葉節點的資料內容為PK。
 
 接著上面的範例，我們設了num為index，然後找出num = 29，Database動作如下
  - 透過num的btree找出id
