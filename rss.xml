@@ -1,4 +1,145 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eric Lee]]></title><description><![CDATA[Working on modern web and web services]]></description><link>https://yitinglee.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 19 Dec 2020 06:40:08 GMT</lastBuildDate><item><title><![CDATA[Database Index]]></title><description><![CDATA[簡單理解Database index]]></description><link>https://yitinglee.github.io/posts/database-index</link><guid isPermaLink="false">https://yitinglee.github.io/posts/database-index</guid><pubDate>Wed, 11 Nov 2020 20:15:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;前言&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%89%8D%E8%A8%80&quot; aria-label=&quot;前言 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;前言&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eric Lee]]></title><description><![CDATA[Working on modern web and web services]]></description><link>https://yitinglee.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 17 Jul 2021 17:43:46 GMT</lastBuildDate><item><title><![CDATA[Docker Image Minimization]]></title><description><![CDATA[Docker image減肥大作戰!!]]></description><link>https://yitinglee.github.io/posts/docker-image-minimization</link><guid isPermaLink="false">https://yitinglee.github.io/posts/docker-image-minimization</guid><pubDate>Sat, 17 Jul 2021 17:00:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;介紹&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E4%BB%8B%E7%B4%B9&quot; aria-label=&quot;介紹 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;介紹&lt;/h2&gt;
+&lt;p&gt;在上傳或下載docker image的時候，大家或多或少都應該有遇過Timeout或是上傳速度很慢等問題，更甚至有時候是把docker image拉到IOT裝置上面跑，先天條件上機器就無法容納沒減肥過的docker image，而縮小docker image的大小是避免這些問題的方法之一，也是我們今天要做的主要實驗。&lt;/p&gt;
+&lt;p&gt;今天的實驗主要是使用Nest這個框架建立出來的service來做為我們縮小的主要對象。雖然是使用Nest作為範例，但這些方法和概念都可以適用在不同的專案上。&lt;/p&gt;
+&lt;h2 id=&quot;第一輪-準備&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E7%AC%AC%E4%B8%80%E8%BC%AA-%E6%BA%96%E5%82%99&quot; aria-label=&quot;第一輪 準備 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;第一輪: 準備&lt;/h2&gt;
+&lt;p&gt;用Nest建一個基本的專案吧&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre style=&quot;counter-reset: linenumber NaN&quot; class=&quot;language-shell line-numbers&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ nest new nest-playground&lt;/code&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot; style=&quot;white-space: normal; width: auto; left: 0;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;我們會得到一個完整Nest的App, 看起會像這樣
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 754px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/dc4bdb6e9bb7786543473da3db49bf81/7527b/folder-structure.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 116.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAYAAAALHW+jAAAACXBIWXMAABYlAAAWJQFJUiTwAAACqklEQVQ4y51V227aUBDkF5qnPpQEfDvH2AbjKzbY2AYMcVSpTftSVWofqqifUPXrp7snAUWpFNl5GI4BezQ7uzse+YsljscTqmaHsijR1DvcdXc47Ft0tx38hQ9b2pjZziNmDqSwsUozZKscxaZAHMUIglA9PzLdAGVzRHfokBQN1nWLvGqRbffYNCcIL8BUuNDknOCpk787QQqXMI8yzPwY9iKGn24w0i2Jpe3iz909omQFjxSNrye4nmgY30yh6SZMusd4Bv6uGxY0Bv3P1/rT9cgyJLxA4uvvEstFgDRNEYUR0iRFlmUIwxCGQaQvYb7A029EKCD9GcIfOeI4QRRFyifX9RT42jQtGITz+RpGwhQQSw/jTyGZnClzNU1XqnTdUFAK+YGn8zWMBNUuwgDjh+/YUMeKosDNzeRCeibqQ6YITcOAJRw42WcE5F1dN+RdjoQ8tG27N9GFkB+Q1LXESakBERqax4LmidVK+QZCbr1nGfgi3ivCtj1it9sjz9e9fftfoZRYxQsEy0CRsco0Xb1NocEeSgfTcK28q6oK222lvHxOOKgpJq9UfERCc8hETdMolTyHwxXSh6SVebiysAoTFNut6jCr5MYM9ZFKtmhsTFrsiVJYltsLGcNx3GGDzTdZ9gxGXaEoS4qtA7quo+bsqPwanjcfRmjqOnSKsHf3f5HlG+VhVdVYrzdqdISQmEymvUlHHDu2MFD7V+Rdosrkkrl0Jn4co0Y1iPe6V8k2zWFEO5xQAnPqnlUyljSbC8pIVtrbQ0k3zz/+RJyTOvKR1e33e3Uy0XSqDSiZyrAdD+23X2pcDodWzSB7yOXf0nvldLpV3e5Vssl5Z89xnZ2UhxwM7CETWpZQ23IJ2V5dpk0xpIsPy1LFfURvMFbKQXEO1yEh+w8meroGBpwusgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+        &lt;source
+          srcset=&quot;/static/dc4bdb6e9bb7786543473da3db49bf81/8ac56/folder-structure.webp 240w,
+/static/dc4bdb6e9bb7786543473da3db49bf81/d3be9/folder-structure.webp 480w,
+/static/dc4bdb6e9bb7786543473da3db49bf81/20eb0/folder-structure.webp 754w&quot;
+          sizes=&quot;(max-width: 754px) 100vw, 754px&quot;
+          type=&quot;image/webp&quot;
+        /&gt;
+        &lt;source
+          srcset=&quot;/static/dc4bdb6e9bb7786543473da3db49bf81/8ff5a/folder-structure.png 240w,
+/static/dc4bdb6e9bb7786543473da3db49bf81/e85cb/folder-structure.png 480w,
+/static/dc4bdb6e9bb7786543473da3db49bf81/7527b/folder-structure.png 754w&quot;
+          sizes=&quot;(max-width: 754px) 100vw, 754px&quot;
+          type=&quot;image/png&quot;
+        /&gt;
+        &lt;img
+          class=&quot;gatsby-resp-image-image&quot;
+          src=&quot;/static/dc4bdb6e9bb7786543473da3db49bf81/7527b/folder-structure.png&quot;
+          alt=&quot;Folder Structure&quot;
+          title=&quot;Folder Structure&quot;
+          loading=&quot;lazy&quot;
+          style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        /&gt;
+      &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;接著用最基本的方法包成docker image吧&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;nest-playground的專案下建立Dockerfile&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre style=&quot;counter-reset: linenumber NaN&quot; class=&quot;language-dockerfile line-numbers&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; node&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;12
+
+&lt;span class=&quot;token keyword&quot;&gt;WORKDIR&lt;/span&gt; /app
+
+&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; . .
+
+&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; yarn install
+
+&lt;span class=&quot;token keyword&quot;&gt;EXPOSE&lt;/span&gt; 3000
+
+&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;yarn&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;start&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot; style=&quot;white-space: normal; width: auto; left: 0;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;build docker image指令如下&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre style=&quot;counter-reset: linenumber NaN&quot; class=&quot;language-shell line-numbers&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;$ docker build -t nest-backend &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot; style=&quot;white-space: normal; width: auto; left: 0;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;這樣build出來的docker-image總共使用了&lt;strong&gt;&lt;strong&gt;1.6G&lt;/strong&gt;&lt;/strong&gt;，比預想中大很多吧&lt;/p&gt;
+&lt;h4 id=&quot;為什麼這麼大&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E7%82%BA%E4%BB%80%E9%BA%BC%E9%80%99%E9%BA%BC%E5%A4%A7&quot; aria-label=&quot;為什麼這麼大 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;為什麼這麼大?&lt;/h4&gt;
+&lt;p&gt;因為我們把整個repo，node_modules，以及實際build出來的js都包在這包image內了&lt;/p&gt;
+&lt;h2 id=&quot;第二輪-拿掉非必要檔案&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E7%AC%AC%E4%BA%8C%E8%BC%AA-%E6%8B%BF%E6%8E%89%E9%9D%9E%E5%BF%85%E8%A6%81%E6%AA%94%E6%A1%88&quot; aria-label=&quot;第二輪 拿掉非必要檔案 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;第二輪: 拿掉非必要檔案&lt;/h2&gt;
+&lt;h4 id=&quot;那怎麼辦&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E9%82%A3%E6%80%8E%E9%BA%BC%E8%BE%A6&quot; aria-label=&quot;那怎麼辦 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;那怎麼辦?&lt;/h4&gt;
+&lt;p&gt;這邊先把必要的程式留下來，其他非必要的檔案都拿掉，包含source code，也就是說除了build出來的dist外其他檔案都不需要存在&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;把Dockerfile分成兩個stage&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;stage1負責build code&lt;/li&gt;
+&lt;li&gt;stage2則負責把stage1 build好的程式copy進去stage2內然後run起來&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;經過這些處理後，stage2(也就最後要run起的image)內只會包含dist內容，任何repo內的資料都會被留在stage1裡面，並不會被放到stage2內，實作如下。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre style=&quot;counter-reset: linenumber NaN&quot; class=&quot;language-dockerfile line-numbers&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# STAGE 1&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; node&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;12 AS build
+
+&lt;span class=&quot;token keyword&quot;&gt;WORKDIR&lt;/span&gt; /app
+
+&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; . .
+
+&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; yarn install
+
+&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;yarn&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;build:prod&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# STAGE 2&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; node&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;12
+
+&lt;span class=&quot;token keyword&quot;&gt;WORKDIR&lt;/span&gt; /app
+
+&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;from=build /app/package.json .
+&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;from=build /app/dist ./dist
+
+&lt;span class=&quot;token keyword&quot;&gt;EXPOSE&lt;/span&gt; 3000
+
+&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;yarn&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;start:prod&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot; style=&quot;white-space: normal; width: auto; left: 0;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;這邊為了將node_modules內沒使用到的東西拿掉，我們使用了webpack來處理，&lt;a href=&quot;https://github.com/YiTingLee/NestAppMinimization/blob/master/webpack.config.js&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Webpack Config&lt;/a&gt;在這邊。&lt;/p&gt;
+&lt;p&gt;這樣處理完的docker image剩下&lt;strong&gt;&lt;strong&gt;919MB&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&quot;感覺還是很大&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E6%84%9F%E8%A6%BA%E9%82%84%E6%98%AF%E5%BE%88%E5%A4%A7&quot; aria-label=&quot;感覺還是很大 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;感覺還是很大?&lt;/h4&gt;
+&lt;h2 id=&quot;第二輪-使用輕量化的node版本alpine&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E7%AC%AC%E4%BA%8C%E8%BC%AA-%E4%BD%BF%E7%94%A8%E8%BC%95%E9%87%8F%E5%8C%96%E7%9A%84node%E7%89%88%E6%9C%ACalpine&quot; aria-label=&quot;第二輪 使用輕量化的node版本alpine permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;第二輪: 使用輕量化的Node版本alpine&lt;/h2&gt;
+&lt;p&gt;我們一般使用的node image是Debian based的，擁有完整的功能，大小約650MB+，而alpine僅有維持運作最基礎的OS功能，甚至連Python/gcc都沒有，大小約50MB+。使用輕量化的node並不是完全沒有後遺症，輕量化的image肯定就是拿掉了許多功能及module，但在image size上是擁有很大的優勢。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;dockerfile&quot;&gt;&lt;pre style=&quot;counter-reset: linenumber NaN&quot; class=&quot;language-dockerfile line-numbers&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# STAGE 1&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; node&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;12&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;alpine AS build
+
+&lt;span class=&quot;token keyword&quot;&gt;WORKDIR&lt;/span&gt; /app
+
+&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; . .
+
+&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; yarn install
+
+&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;yarn&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;build:prod&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# STAGE 2&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; node&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;12&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;alpine
+
+&lt;span class=&quot;token keyword&quot;&gt;WORKDIR&lt;/span&gt; /app
+
+&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;from=build /app/package.json .
+&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;from=build /app/dist ./dist
+
+&lt;span class=&quot;token keyword&quot;&gt;EXPOSE&lt;/span&gt; 3000
+
+&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;yarn&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;start:prod&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;line-numbers-rows&quot; style=&quot;white-space: normal; width: auto; left: 0;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用輕量版Node build完後的總大小是&lt;strong&gt;&lt;strong&gt;90.5MB&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;結論&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E7%B5%90%E8%AB%96&quot; aria-label=&quot;結論 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;結論&lt;/h2&gt;
+&lt;p&gt;這次的實驗大小的進度分別是1.6GB -&gt; 919MB -&gt; 90.5MB，總共減少了17X，當中除了Dockerfile在Stage上的操作外還有一些webpack的使用才能大幅度的減少image的大小。&lt;/p&gt;
+&lt;p&gt;這邊要再說一次，雖然今天的實驗主要是使用Nest這個框架做為我們的主要範例，但這些方法及概念都可以套用到不同的專案上，尤其是frontend的專案另外還可以使用nginx等輕量化的web server作為基底。&lt;/p&gt;
+&lt;h2 id=&quot;source-code&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#source-code&quot; aria-label=&quot;source code permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Source Code&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/YiTingLee/NestAppMinimization&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://github.com/YiTingLee/NestAppMinimization&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Database Index]]></title><description><![CDATA[簡單理解Database index]]></description><link>https://yitinglee.github.io/posts/database-index</link><guid isPermaLink="false">https://yitinglee.github.io/posts/database-index</guid><pubDate>Wed, 11 Nov 2020 20:15:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;前言&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%89%8D%E8%A8%80&quot; aria-label=&quot;前言 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;前言&lt;/h2&gt;
 &lt;p&gt;此文章的目的並非讓大家對於Btree有深度了解，而是使用簡單的方式解釋Database Index的基本原理，使得在設計Index的時候有正確的方向。&lt;/p&gt;
 &lt;h2 id=&quot;介紹&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E4%BB%8B%E7%B4%B9&quot; aria-label=&quot;介紹 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;介紹&lt;/h2&gt;
 &lt;p&gt;當我們發現資料庫Query速度越來越慢，且已經漸漸地影響到使用者體驗的時候，那就是優化資料庫的最佳時機，而最典型的方法就是加index，但是在設計上如果不理解index的原理而隨便亂加的話，反而會造成整體資料庫效率降低!!&lt;/p&gt;
@@ -126,7 +267,7 @@
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAACT0lEQVQoz61SS29SURA+bcFH60L9ARp/gbuuXGBMrL113YUrJXGDW111YQzBJRErafCBtYkCMYYdIomYlBgeFeHyuvJ+CFwQ7gUkgCHi9RsCrlg6yeTMOd/Md+Z8Zxib2R+4MvOv8biKzkKBgEGBNRoNpV6vU6gEg8GHhHW7XRVbZGazmbldLvY+GmXhnR12tLvLvkjSCmH84eFdCVar1b6VSqU0SNo+n+8eYeBehjOdTseSySRzgcNisTDm9/vnIPmSUq2uKOvrp34zpsZeBbLVD273ml6vPz0ajU7iTA0+tUajWf1XM6tPpVLs/5vNZjtTLpf35E7HWhCE/a4kHWRyuUeEhcPhS6IovoZ+z4vF4gs82cbz/E1AS7lczthutw8EQXgpy7IVkpidTudZZjKZzpPoZHKrNV2RTH/DvF6vjvaTyUTp9XpTDBI5AC1nMpkJ7UE6PW82m4rdbr/AoM1xPhrd/CFJV+uh0JaYz3OVWu0yETocjnPofiufz29EIhEOxZzH47lIGLTVgGQDHW4ivob4SiKROMY4jlubP/8OnjKPszxPY3FigUoqrVarXiSf0WhUsVarBZnEB3CrjAnpdDoF6LGNbt5hYr5DHyEWi12Hfil0YkAnQeQagL+BO+FvweHA2X1MgUgjQ/o8hX9UZgZNbw+HwzjF4/FYSafTN0hHXGYdDAY/kfsKxX7k8FjDWEM426N8RqJms9knKHLhJqVSqRDBrUKhcERC43d/BQKB7Wq1OsRHWPBhTfgzxJ+whuCfEftQ87jf7yt/ARSt+xszVQORAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAACT0lEQVQoz61SS29SURA+bcFH60L9ARp/gbuuXGBMrL113YUrJXGDW111YQzBJRErafCBtYnCjTHsEEnEpMRwoSJcXlfeD4ELwr2ABDBEcvwOAeOCpZNMZs58M3PmfGcImQn9R7/G4xoWCwmCiUIajQat1+vMpcFg8CHDut2uhiwSq9VKPG43eR+NkvDODjna3SVfFGWFYeLh4V0FUqvVvpVKpTSatP1+/73pAJQuQ4nBYCDJZJK40cNmsxESCATmINMlWq2u0PX1U78J0eKsQbPVDx7PmtFoPD0ajU4ipkU/rU6nW/1bM6tPpVLk/4vD4ThTLpf31E7HXpCk/a6iHGRyuUcMC4fDl2RZfg3+nheLxRd4skMUxZuAlnK5nLndbh9IkvRSVVU7KLG6XK6zxGKxnGekM1FbralFMvsb4vP5DOw8mUxor9ebYqCIB7ScyWQm7Iym03iz2aROp/MCATfHxWh084eiXK2HQltyPs9VarXLrCHP8+cw/VY+n9+IRCIcijmv13uRYeBWhyYbmHAT/jX4VxKJxDHCcdza/Pl38JS5nxVFthYnFrCk0ev12kX0mc1mDWm1WqBJfgC1q9iQTqdTAB/bmOYdNuY7+JFisdh18JfCJCZMEkSuCfgbqAv6Fj14xO5jC2S2Moyfp9CPdCbg9PZwOIwzfzwe03Q6fYPxiMvsg8HgJ3JfoTiAHBE2DBtCbI/lE0ZqNpt9giI3bqKVSoU1uFUoFI4Y0fjdX4IgbFer1SE+woYPa0Kfwf8EG4J+hu9HzeN+v0//ABgf+xy0fZi2AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;picture&gt;
         &lt;source
