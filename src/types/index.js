@@ -1,5 +1,7 @@
 // @flow strict
 import type { Node as ReactNode } from "react";
+import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
+deckDeckGoHighlightElement();
 
 export type RenderCallback = {
   // $FlowFixMe

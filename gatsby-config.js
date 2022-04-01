@@ -191,15 +191,8 @@ module.exports = {
           "gatsby-remark-copy-linked-files",
           "gatsby-remark-smartypants",
           "gatsby-remark-external-links",
-          {
-            resolve: `gatsby-transformer-remark`,
-            options: {
-              plugins: [
-                `gatsby-remark-reading-time`,
-                // ...
-              ],
-            },
-          },
+          `gatsby-remark-reading-time`,
+          `gatsby-remark-highlight-code`,
         ],
       },
     },
