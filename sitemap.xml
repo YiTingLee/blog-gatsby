@@ -3,12 +3,12 @@
 <url> <loc>https://yitinglee.github.io/tags</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yitinglee.github.io/categories</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yitinglee.github.io/posts/design-pattern-strategy-pattern</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://yitinglee.github.io/posts/design-pattern-observer-pattern</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yitinglee.github.io/posts/design-pattern-decorator-pattern</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://yitinglee.github.io/posts/database-index</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://yitinglee.github.io/posts/docker-image-minimization</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yitinglee.github.io/pages/about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yitinglee.github.io/pages/contacts/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://yitinglee.github.io/posts/database-index</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://yitinglee.github.io/posts/design-pattern-observer-pattern</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://yitinglee.github.io/posts/docker-image-minimization</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yitinglee.github.io/tag/database</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yitinglee.github.io/tag/design-pattern</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yitinglee.github.io/tag/docker</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
