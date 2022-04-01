@@ -10,6 +10,9 @@ exports[`Content renders correctly 1`] = `
     test
   </h1>
   <div
+    className="content__readingTime"
+  />
+  <div
     className="content__body"
     dangerouslySetInnerHTML={
       Object {

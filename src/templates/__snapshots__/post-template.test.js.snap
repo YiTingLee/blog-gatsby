@@ -25,6 +25,11 @@ exports[`PostTemplate renders correctly 1`] = `
           test
         </h1>
         <div
+          className="content__readingTime"
+        >
+          3 min read
+        </div>
+        <div
           className="content__body"
           dangerouslySetInnerHTML={
             Object {
@@ -84,14 +89,13 @@ exports[`PostTemplate renders correctly 1`] = `
           Test bio
           <a
             className="author__bio-twitter"
-            href="https://www.twitter.com/#"
             rel="noopener noreferrer"
             target="_blank"
           >
             <strong>
               Test name
             </strong>
-             on Twitter
+             on Cakeresume
           </a>
         </p>
       </div>
