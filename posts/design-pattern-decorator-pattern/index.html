@@ -58,63 +58,60 @@
 
         gtag('config', 'UA-73379983-2', {"send_page_view":false});
       }
-      </script><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="icon" href="/favicon-32x32.png?v=800f39e6251cede3104f4e85b3365fbc" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><meta name="theme-color" content="#F7A046"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=800f39e6251cede3104f4e85b3365fbc"/><title data-react-helmet="true">Decorator Pattern - Blog by Eric Lee</title><meta data-react-helmet="true" name="description" content="簡單的飲料例子來解釋Decorator"/><meta data-react-helmet="true" property="og:site_name" content="Decorator Pattern - Blog by Eric Lee"/><meta data-react-helmet="true" property="og:image" content="https://yitinglee.github.io/photo.jpg"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Decorator Pattern - Blog by Eric Lee"/><meta data-react-helmet="true" name="twitter:description" content="簡單的飲料例子來解釋Decorator"/><meta data-react-helmet="true" name="twitter:image" content="https://yitinglee.github.io/photo.jpg"/><link as="script" rel="preload" href="/webpack-runtime-7bca7fea8d7d1cc27059.js"/><link as="script" rel="preload" href="/framework-31413af41550353e296a.js"/><link as="script" rel="preload" href="/app-1118b25a10b793213494.js"/><link as="script" rel="preload" href="/styles-407fe62976dc5310c43e.js"/><link as="script" rel="preload" href="/cd95ea5cbd2c605f26db819f07999610c9ff4310-08ce262e735fe5781f14.js"/><link as="script" rel="preload" href="/643651a62fb35a9bb4f20061cb1f214a352d7976-2ac3f638bf79bf36fbb5.js"/><link as="script" rel="preload" href="/component---src-templates-post-template-js-22610fd00f79489268e9.js"/><link as="fetch" rel="preload" href="/page-data/posts/design-pattern-decorator-pattern/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/251939775.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/3688386433.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/401334301.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="Layout-module--layout--3Pyz6"><div><a class="Post-module--post__home-button--16Kl0" href="/">All Articles</a><div><div class="Content-module--content--3p512"><h1 class="Content-module--content__title--2BDW9">Decorator Pattern</h1><div class="Content-module--content__readingTime--3UF80">4 min read</div><div class="Content-module--content__body--2TrQ-"><h2>介紹</h2>
+      </script><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="icon" href="/favicon-32x32.png?v=800f39e6251cede3104f4e85b3365fbc" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><meta name="theme-color" content="#F7A046"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=800f39e6251cede3104f4e85b3365fbc"/><title data-react-helmet="true">Decorator Pattern - Blog by Eric Lee</title><meta data-react-helmet="true" name="description" content="簡單的飲料例子來解釋Decorator"/><meta data-react-helmet="true" property="og:site_name" content="Decorator Pattern - Blog by Eric Lee"/><meta data-react-helmet="true" property="og:image" content="https://yitinglee.github.io/photo.jpg"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Decorator Pattern - Blog by Eric Lee"/><meta data-react-helmet="true" name="twitter:description" content="簡單的飲料例子來解釋Decorator"/><meta data-react-helmet="true" name="twitter:image" content="https://yitinglee.github.io/photo.jpg"/><link as="script" rel="preload" href="/webpack-runtime-7bca7fea8d7d1cc27059.js"/><link as="script" rel="preload" href="/framework-31413af41550353e296a.js"/><link as="script" rel="preload" href="/app-1118b25a10b793213494.js"/><link as="script" rel="preload" href="/styles-407fe62976dc5310c43e.js"/><link as="script" rel="preload" href="/cd95ea5cbd2c605f26db819f07999610c9ff4310-08ce262e735fe5781f14.js"/><link as="script" rel="preload" href="/643651a62fb35a9bb4f20061cb1f214a352d7976-2ac3f638bf79bf36fbb5.js"/><link as="script" rel="preload" href="/component---src-templates-post-template-js-22610fd00f79489268e9.js"/><link as="fetch" rel="preload" href="/page-data/posts/design-pattern-decorator-pattern/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/251939775.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/3688386433.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/401334301.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="Layout-module--layout--3Pyz6"><div><a class="Post-module--post__home-button--16Kl0" href="/">All Articles</a><div><div class="Content-module--content--3p512"><h1 class="Content-module--content__title--2BDW9">Decorator Pattern</h1><div class="Content-module--content__readingTime--3UF80">4 min read</div><div class="Content-module--content__body--2TrQ-"><h2 id="介紹" style="position:relative;"><a href="#%E4%BB%8B%E7%B4%B9" aria-label="介紹 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>介紹</h2>
 <p>現在手搖飲料店開得越來越多，能夠點的手搖種類也相當多元，比方說綠茶珍珠、珍珠奶茶、椰果奶茶、仙草奶綠等等，每種配料都能隨意組合，所以 Post 機上的飲料管理肯定相當複雜，這種情況就非常適合使用裝飾者模式來處理。</p>
 <p>若是直接硬幹的話，通常 Class 會長成 MilkTea、BubbleMilkTea 和 BubbleMilkGreenTea 等等，也就是說只要一種配料搭配一種茶類就必須多一個 Class。再來如果要兩倍珍珠的話，這設計方式只能在遇到需求的時候請程式設計師再加一個 Class，這種設計方式顯然是不好的。</p>
 <p>簡單來說，裝飾者模式把上述配料當作裝飾者，而茶類的本體作為被裝飾者，可以想像成被裝飾者還是飲料的主體，而裝飾者只是在被裝飾者的身上加了某些效果及行為。</p>
-<h2>例子</h2>
+<h2 id="例子" style="position:relative;"><a href="#%E4%BE%8B%E5%AD%90" aria-label="例子 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>例子</h2>
 <ul>
 <li>我們模擬上面的例子</li>
 <li>被裝飾者抽象類別: Beverage</li>
 </ul>
-<pre><code class="language-typescript">abstract class Beverage {
-  description!: string;
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Beverage</span> <span class="token punctuation">{</span>
+  description<span class="token operator">!</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
 
-  abstract getCost(): number;
+  <span class="token keyword">abstract</span> <span class="token function">getCost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
 
-  getDescription(): string {
-    return this.description;
-  }
-}
-</code></pre>
+  <span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>description<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></div>
 <ul>
 <li>各種飲料的實現</li>
 </ul>
-<pre><code class="language-typescript">class MilkTea extends Beverage {
-  constructor() {
-    super();
-    this.description = "Milk Tea";
-  }
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">class</span> <span class="token class-name">MilkTea</span> <span class="token keyword">extends</span> <span class="token class-name">Beverage</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>description <span class="token operator">=</span> <span class="token string">"Milk Tea"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  getCost() {
-    return 50;
-  }
-}
+  <span class="token function">getCost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">50</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-class GreenTea extends Beverage {
-  constructor() {
-    super();
-    this.description = "Green Tea";
-  }
+<span class="token keyword">class</span> <span class="token class-name">GreenTea</span> <span class="token keyword">extends</span> <span class="token class-name">Beverage</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>description <span class="token operator">=</span> <span class="token string">"Green Tea"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  getCost() {
-    return 40;
-  }
-}
-</code></pre>
+  <span class="token function">getCost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">40</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></div>
 <ul>
 <li>裝飾者抽象類別: CondimentDecorator</li>
 </ul>
-<pre><code class="language-typescript">abstract class CondimentDecorator extends Beverage {
-  abstract getCost(): number;
-  abstract getDescription(): string;
-}
-</code></pre>
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">CondimentDecorator</span> <span class="token keyword">extends</span> <span class="token class-name">Beverage</span> <span class="token punctuation">{</span>
+  <span class="token keyword">abstract</span> <span class="token function">getCost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  <span class="token keyword">abstract</span> <span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span><span></span></span></pre></div>
 <ul>
 <li>
-<p>這邊我解釋一下為甚麼<code>getCost</code>和<code>getDescription</code>這兩個方法都必須被重新覆寫</p>
+<p>這邊我解釋一下為甚麼<code class="language-text">getCost</code>和<code class="language-text">getDescription</code>這兩個方法都必須被重新覆寫</p>
 <ul>
-<li>裝飾者的主要運作方式是在被裝飾者的前後增加某種行為或效果，由下方的 implement 可以看出覆寫後對<code>getCost</code>和<code>getDescription</code>增加的行為。</li>
+<li>裝飾者的主要運作方式是在被裝飾者的前後增加某種行為或效果，由下方的 implement 可以看出覆寫後對<code class="language-text">getCost</code>和<code class="language-text">getDescription</code>增加的行為。</li>
 </ul>
 </li>
 </ul>
@@ -122,40 +119,39 @@ class GreenTea extends Beverage {
 <ul>
 <li>各種裝飾者的實現</li>
 </ul>
-<pre><code class="language-typescript">class Bubble extends CondimentDecorator {
-  private beverage: Beverage;
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">class</span> <span class="token class-name">Bubble</span> <span class="token keyword">extends</span> <span class="token class-name">CondimentDecorator</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> beverage<span class="token operator">:</span> Beverage<span class="token punctuation">;</span>
 
-  constructor(beverage: Beverage) {
-    super();
-    this.beverage = beverage;
-  }
+  <span class="token function">constructor</span><span class="token punctuation">(</span>beverage<span class="token operator">:</span> Beverage<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>beverage <span class="token operator">=</span> beverage<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  getDescription() {
-    return this.beverage.getDescription() + ', Bubble';
-  }
+  <span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>beverage<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">', Bubble'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  getCost() {
-    return this.beverage.getCost() + 10;
-  }
-}
+  <span class="token function">getCost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>beverage<span class="token punctuation">.</span><span class="token function">getCost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-class Pudding extends CondimentDecorator {
-  private beverage: Beverage;
+<span class="token keyword">class</span> <span class="token class-name">Pudding</span> <span class="token keyword">extends</span> <span class="token class-name">CondimentDecorator</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> beverage<span class="token operator">:</span> Beverage<span class="token punctuation">;</span>
 
-  constructor(beverage: Beverage) {
-    super();
-    this.beverage = beverage;
-  }
+  <span class="token function">constructor</span><span class="token punctuation">(</span>beverage<span class="token operator">:</span> Beverage<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>beverage <span class="token operator">=</span> beverage<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  getDescription() {
-    return this.beverage.getDescription() + ', Pudding';
-  }
+  <span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>beverage<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">', Pudding'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  getCost() {
-    return this.beverage.getCost() + 20;
-  }
-}
-</code></pre>
+  <span class="token function">getCost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>beverage<span class="token punctuation">.</span><span class="token function">getCost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></div>
 <ul>
 <li>到目前為止我們主要實現了兩個 GreenTea, MilkTea 這兩個被裝飾者 Class, 和 Bubble, Pudding 兩個裝飾者的 Class。</li>
 </ul>
@@ -163,47 +159,45 @@ class Pudding extends CondimentDecorator {
 <ul>
 <li>Main</li>
 </ul>
-<pre><code class="language-typescript">console.log("Start");
-const beverage = new MilkTea();
-console.log(beverage.getDescription());
-console.log(beverage.getCost());
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript"><span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Start"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> beverage <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MilkTea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>beverage<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>beverage<span class="token punctuation">.</span><span class="token function">getCost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-const bubbleMilkTea = new Bubble(new MilkTea());
-console.log(bubbleMilkTea.getDescription());
-console.log(bubbleMilkTea.getCost());
+<span class="token keyword">const</span> bubbleMilkTea <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Bubble</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MilkTea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>bubbleMilkTea<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>bubbleMilkTea<span class="token punctuation">.</span><span class="token function">getCost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-const powerTea = new Pudding(new Bubble(new Bubble(new MilkTea())));
-console.log(powerTea.getDescription());
-console.log(powerTea.getCost());
-</code></pre>
+<span class="token keyword">const</span> powerTea <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Pudding</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Bubble</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Bubble</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MilkTea</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>powerTea<span class="token punctuation">.</span><span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>powerTea<span class="token punctuation">.</span><span class="token function">getCost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></div>
 <ul>
 <li>Result</li>
 </ul>
-<pre><code class="language-typescript">TypeScript v3.3.3 Node.js v10 linux/amd64
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript">TypeScript v3<span class="token punctuation">.</span><span class="token number">3.3</span> Node<span class="token punctuation">.</span>js v10 linux<span class="token operator">/</span>amd64
 Start
 Milk Tea
-50
-Milk Tea, Bubble
-60
-Milk Tea, Bubble, Bubble, Pudding
-90
-</code></pre>
+<span class="token number">50</span>
+Milk Tea<span class="token punctuation">,</span> Bubble
+<span class="token number">60</span>
+Milk Tea<span class="token punctuation">,</span> Bubble<span class="token punctuation">,</span> Bubble<span class="token punctuation">,</span> Pudding
+<span class="token number">90</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></div>
 <ul>
 <li>可以由 Main 程式中看出裝飾者與被裝飾者如何合作</li>
 <li>裝飾者做的事就是直接在被裝飾者身上加行為(不管裝飾者現在到底長怎樣)</li>
 </ul>
-<h2>優點</h2>
+<h2 id="優點" style="position:relative;"><a href="#%E5%84%AA%E9%BB%9E" aria-label="優點 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>優點</h2>
 <ul>
 <li>高彈性</li>
 <li>達到物件與物件間鬆綁的效果</li>
 <li>於程式執行期中使用合成來達到效果，而非編譯期達成。</li>
 </ul>
-<h2>缺點</h2>
+<h2 id="缺點" style="position:relative;"><a href="#%E7%BC%BA%E9%BB%9E" aria-label="缺點 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>缺點</h2>
 <ul>
 <li>裝飾者的小類別會非常多</li>
 <li>初學者會認為相對複雜，容易迷失在物件與物件之間的關係。</li>
 </ul>
-<h2>結論</h2>
+<h2 id="結論" style="position:relative;"><a href="#%E7%B5%90%E8%AB%96" aria-label="結論 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>結論</h2>
 <p>裝飾者模式的優缺點都相對明顯，若使用不當容易造成程式複雜且難以維護，但許多的程式 Library 中都能夠看到使用裝飾者模式的身影。</p>
-<h3>Source Code</h3>
-<p><a href="https://github.com/YiTingLee/Design-Pattern/blob/main/decorator-pattern/index.ts">https://github.com/YiTingLee/Design-Pattern/blob/main/decorator-pattern/index.ts</a></p></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->8 Nov 2020</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/design-pattern/">Design Pattern</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Working on modern web and web services<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.cakeresume.com/656b08" rel="noopener noreferrer" target="_blank"><strong>Eric Lee</strong> on Cakeresume</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/design-pattern-decorator-pattern";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-bfcb07a4b86b0f7301bf.js"],"app":["/app-1118b25a10b793213494.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-241020a1cf7d0f317bbe.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-eadb914010875380852b.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-0a72e764a3e28f78468f.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-0b8c3ebd8ae52c34d7ec.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-f32b1d58317994f4a3d4.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-61f342d8458518a01fad.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-22610fd00f79489268e9.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-131b3f026ad0f87e0f8f.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-c9a3bdc0c94b613711f2.js"]};/*]]>*/</script><script src="/polyfill-bfcb07a4b86b0f7301bf.js" nomodule=""></script><script src="/component---src-templates-post-template-js-22610fd00f79489268e9.js" async=""></script><script src="/643651a62fb35a9bb4f20061cb1f214a352d7976-2ac3f638bf79bf36fbb5.js" async=""></script><script src="/cd95ea5cbd2c605f26db819f07999610c9ff4310-08ce262e735fe5781f14.js" async=""></script><script src="/styles-407fe62976dc5310c43e.js" async=""></script><script src="/app-1118b25a10b793213494.js" async=""></script><script src="/framework-31413af41550353e296a.js" async=""></script><script src="/webpack-runtime-7bca7fea8d7d1cc27059.js" async=""></script></body></html>
+<h3 id="source-code" style="position:relative;"><a href="#source-code" aria-label="source code permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Source Code</h3>
+<p><a href="https://github.com/YiTingLee/Design-Pattern/blob/main/decorator-pattern/index.ts" target="_blank" rel="nofollow noopener noreferrer">https://github.com/YiTingLee/Design-Pattern/blob/main/decorator-pattern/index.ts</a></p></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->8 Nov 2020</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/design-pattern/">Design Pattern</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Working on modern web and web services<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.cakeresume.com/656b08" rel="noopener noreferrer" target="_blank"><strong>Eric Lee</strong> on Cakeresume</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/design-pattern-decorator-pattern";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-bfcb07a4b86b0f7301bf.js"],"app":["/app-1118b25a10b793213494.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-241020a1cf7d0f317bbe.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-eadb914010875380852b.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-0a72e764a3e28f78468f.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-0b8c3ebd8ae52c34d7ec.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-f32b1d58317994f4a3d4.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-61f342d8458518a01fad.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-22610fd00f79489268e9.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-131b3f026ad0f87e0f8f.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-c9a3bdc0c94b613711f2.js"]};/*]]>*/</script><script src="/polyfill-bfcb07a4b86b0f7301bf.js" nomodule=""></script><script src="/component---src-templates-post-template-js-22610fd00f79489268e9.js" async=""></script><script src="/643651a62fb35a9bb4f20061cb1f214a352d7976-2ac3f638bf79bf36fbb5.js" async=""></script><script src="/cd95ea5cbd2c605f26db819f07999610c9ff4310-08ce262e735fe5781f14.js" async=""></script><script src="/styles-407fe62976dc5310c43e.js" async=""></script><script src="/app-1118b25a10b793213494.js" async=""></script><script src="/framework-31413af41550353e296a.js" async=""></script><script src="/webpack-runtime-7bca7fea8d7d1cc27059.js" async=""></script></body></html>

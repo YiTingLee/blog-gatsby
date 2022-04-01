@@ -58,9 +58,9 @@
 
         gtag('config', 'UA-73379983-2', {"send_page_view":false});
       }
-      </script><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="icon" href="/favicon-32x32.png?v=800f39e6251cede3104f4e85b3365fbc" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><meta name="theme-color" content="#F7A046"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=800f39e6251cede3104f4e85b3365fbc"/><title data-react-helmet="true">Observer Pattern - Blog by Eric Lee</title><meta data-react-helmet="true" name="description" content="Rxjs是什麼設計模式?"/><meta data-react-helmet="true" property="og:site_name" content="Observer Pattern - Blog by Eric Lee"/><meta data-react-helmet="true" property="og:image" content="https://yitinglee.github.io/photo.jpg"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Observer Pattern - Blog by Eric Lee"/><meta data-react-helmet="true" name="twitter:description" content="Rxjs是什麼設計模式?"/><meta data-react-helmet="true" name="twitter:image" content="https://yitinglee.github.io/photo.jpg"/><link as="script" rel="preload" href="/webpack-runtime-7bca7fea8d7d1cc27059.js"/><link as="script" rel="preload" href="/framework-31413af41550353e296a.js"/><link as="script" rel="preload" href="/app-1118b25a10b793213494.js"/><link as="script" rel="preload" href="/styles-407fe62976dc5310c43e.js"/><link as="script" rel="preload" href="/cd95ea5cbd2c605f26db819f07999610c9ff4310-08ce262e735fe5781f14.js"/><link as="script" rel="preload" href="/643651a62fb35a9bb4f20061cb1f214a352d7976-2ac3f638bf79bf36fbb5.js"/><link as="script" rel="preload" href="/component---src-templates-post-template-js-22610fd00f79489268e9.js"/><link as="fetch" rel="preload" href="/page-data/posts/design-pattern-observer-pattern/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/251939775.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/3688386433.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/401334301.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="Layout-module--layout--3Pyz6"><div><a class="Post-module--post__home-button--16Kl0" href="/">All Articles</a><div><div class="Content-module--content--3p512"><h1 class="Content-module--content__title--2BDW9">Observer Pattern</h1><div class="Content-module--content__readingTime--3UF80">3 min read</div><div class="Content-module--content__body--2TrQ-"><h2>前言</h2>
+      </script><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="icon" href="/favicon-32x32.png?v=800f39e6251cede3104f4e85b3365fbc" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><meta name="theme-color" content="#F7A046"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=800f39e6251cede3104f4e85b3365fbc"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=800f39e6251cede3104f4e85b3365fbc"/><title data-react-helmet="true">Observer Pattern - Blog by Eric Lee</title><meta data-react-helmet="true" name="description" content="Rxjs是什麼設計模式?"/><meta data-react-helmet="true" property="og:site_name" content="Observer Pattern - Blog by Eric Lee"/><meta data-react-helmet="true" property="og:image" content="https://yitinglee.github.io/photo.jpg"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Observer Pattern - Blog by Eric Lee"/><meta data-react-helmet="true" name="twitter:description" content="Rxjs是什麼設計模式?"/><meta data-react-helmet="true" name="twitter:image" content="https://yitinglee.github.io/photo.jpg"/><link as="script" rel="preload" href="/webpack-runtime-7bca7fea8d7d1cc27059.js"/><link as="script" rel="preload" href="/framework-31413af41550353e296a.js"/><link as="script" rel="preload" href="/app-1118b25a10b793213494.js"/><link as="script" rel="preload" href="/styles-407fe62976dc5310c43e.js"/><link as="script" rel="preload" href="/cd95ea5cbd2c605f26db819f07999610c9ff4310-08ce262e735fe5781f14.js"/><link as="script" rel="preload" href="/643651a62fb35a9bb4f20061cb1f214a352d7976-2ac3f638bf79bf36fbb5.js"/><link as="script" rel="preload" href="/component---src-templates-post-template-js-22610fd00f79489268e9.js"/><link as="fetch" rel="preload" href="/page-data/posts/design-pattern-observer-pattern/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/251939775.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/3688386433.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/401334301.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="Layout-module--layout--3Pyz6"><div><a class="Post-module--post__home-button--16Kl0" href="/">All Articles</a><div><div class="Content-module--content--3p512"><h1 class="Content-module--content__title--2BDW9">Observer Pattern</h1><div class="Content-module--content__readingTime--3UF80">3 min read</div><div class="Content-module--content__body--2TrQ-"><h2 id="前言" style="position:relative;"><a href="#%E5%89%8D%E8%A8%80" aria-label="前言 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>前言</h2>
 <p>觀察者模式大家應該都不太陌生, 很多程式語言都已經有interface或是已經實踐observable的class了, 例如Java和javascript中的Rxjs等等。</p>
-<h2>介紹</h2>
+<h2 id="介紹" style="position:relative;"><a href="#%E4%BB%8B%E7%B4%B9" aria-label="介紹 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>介紹</h2>
 <p>我們用現在最流行的Youtube來解釋觀察者模式，Youtube上的訂閱方式如下</p>
 <ul>
 <li>觀眾對喜歡的youtuber按下訂閱按鈕</li>
@@ -68,125 +68,118 @@
 <li>一位youtuber可以同時被多位觀眾訂閱</li>
 <li>觀眾能隨時取消訂閱，也就不會收到youtuber的新影片通知</li>
 </ul>
-<h2>例子</h2>
+<h2 id="例子" style="position:relative;"><a href="#%E4%BE%8B%E5%AD%90" aria-label="例子 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>例子</h2>
 <ul>
 <li>我們模擬上面的例子</li>
 <li>Subject interface</li>
 </ul>
-<pre><code class="language-typescript">interface Subject {
-  registerObserver(observer: Observer): void;
-  removeObserver(observer: Observer):void;
-  notifyObservers():void;
-}
-</code></pre>
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">Subject</span> <span class="token punctuation">{</span>
+  <span class="token function">registerObserver</span><span class="token punctuation">(</span>observer<span class="token operator">:</span> Observer<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+  <span class="token function">removeObserver</span><span class="token punctuation">(</span>observer<span class="token operator">:</span> Observer<span class="token punctuation">)</span><span class="token operator">:</span><span class="token keyword">void</span><span class="token punctuation">;</span>
+  <span class="token function">notifyObservers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span><span></span><span></span></span></pre></div>
 <ul>
 <li>Observer</li>
 </ul>
-<pre><code class="language-typescript">interface Observer {
-  update(newVideo: object): void;
-}
-</code></pre>
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">Observer</span> <span class="token punctuation">{</span>
+  <span class="token function">update</span><span class="token punctuation">(</span>newVideo<span class="token operator">:</span> object<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span></span></pre></div>
 <ul>
 <li>Video: 這邊只是簡單寫個title</li>
 </ul>
-<pre><code class="language-typescript">interface Video {
-  title: string
-}
-</code></pre>
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">Video</span> <span class="token punctuation">{</span>
+  title<span class="token operator">:</span> <span class="token builtin">string</span>
+<span class="token punctuation">}</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span></span></pre></div>
 <ul>
 <li>Youtuber</li>
 </ul>
-<pre><code class="language-typescript">class Youtuber implements Subject {
-  observers: Array&#x3C;Observer>;
-  video: Video;
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">class</span> <span class="token class-name">Youtuber</span> <span class="token keyword">implements</span> <span class="token class-name">Subject</span> <span class="token punctuation">{</span>
+  observers<span class="token operator">:</span> <span class="token builtin">Array</span><span class="token operator">&lt;</span>Observer<span class="token operator">></span><span class="token punctuation">;</span>
+  video<span class="token operator">:</span> Video<span class="token punctuation">;</span>
 
-  constructor() {
-    this.observers = [];
-    this.video = { title: 'init' };
-  }
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>observers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>video <span class="token operator">=</span> <span class="token punctuation">{</span> title<span class="token operator">:</span> <span class="token string">'init'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  registerObserver(observer: Observer) {
-    this.observers.push(observer);
-  }
+  <span class="token function">registerObserver</span><span class="token punctuation">(</span>observer<span class="token operator">:</span> Observer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>observers<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  removeObserver(observer: Observer) {
-    const index = this.observers.indexOf(observer);
-    this.observers = this.observers.splice(index, 1);
-  }
+  <span class="token function">removeObserver</span><span class="token punctuation">(</span>observer<span class="token operator">:</span> Observer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> index <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>observers<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>observer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>observers <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>observers<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  notifyObservers() {
-    this.observers.forEach(observer => {
-      observer.update(this.video);
-    });
-  }
+  <span class="token function">notifyObservers</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>observers<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>observer <span class="token operator">=></span> <span class="token punctuation">{</span>
+      observer<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>video<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  setVideo() {
-    this.video = { title: new Date().getTime().toString()};
-    this.notifyObservers();
-  }
-}
-</code></pre>
+  <span class="token function">setVideo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>video <span class="token operator">=</span> <span class="token punctuation">{</span> title<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">notifyObservers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></div>
 <ul>
 <li>User</li>
 </ul>
-<pre><code class="language-typescript">class User implements Observer {
-  subject: Subject;
-  constructor(subject: Subject) {
-    this.subject = subject;
-    this.subject.registerObserver(this);
-  }
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token keyword">implements</span> <span class="token class-name">Observer</span> <span class="token punctuation">{</span>
+  subject<span class="token operator">:</span> Subject<span class="token punctuation">;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>subject<span class="token operator">:</span> Subject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>subject <span class="token operator">=</span> subject<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>subject<span class="token punctuation">.</span><span class="token function">registerObserver</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  update(video: Video) {
-    this.display(video);
-  }
+  <span class="token function">update</span><span class="token punctuation">(</span>video<span class="token operator">:</span> Video<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">display</span><span class="token punctuation">(</span>video<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  unsubscribe() {
-    this.subject.removeObserver(this);
-  }
+  <span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>subject<span class="token punctuation">.</span><span class="token function">removeObserver</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  display(video: Video) {
-    console.log('video:' + video.title);
-  }
-}
-</code></pre>
+  <span class="token function">display</span><span class="token punctuation">(</span>video<span class="token operator">:</span> Video<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'video:'</span> <span class="token operator">+</span> video<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></div>
 <ul>
 <li>Main</li>
 </ul>
-<pre><code class="language-typescript">const youtuber = new Youtuber();
-const user = new User(youtuber);
-const user2 = new User(youtuber);
-const user3 = new User(youtuber);
-youtuber.setVideo();
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript"><span class="token keyword">const</span> youtuber <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Youtuber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>youtuber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> user2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>youtuber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> user3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>youtuber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+youtuber<span class="token punctuation">.</span><span class="token function">setVideo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-user2.unsubscribe();
-console.log('user2 unsubscribe');
-user3.unsubscribe();
-console.log('user3 unsubscribe');
-youtuber.setVideo();
-</code></pre>
+user2<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'user2 unsubscribe'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+user3<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'user3 unsubscribe'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+youtuber<span class="token punctuation">.</span><span class="token function">setVideo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></div>
 <ul>
 <li>Result</li>
 </ul>
-<pre><code class="language-typescript">TypeScript v3.3.3 linux/amd64
-video:1563710179580
-video:1563710179580
-video:1563710179580
+<div class="gatsby-highlight" data-language="typescript"><pre style="counter-reset: linenumber NaN" class="language-typescript line-numbers"><code class="language-typescript">TypeScript v3<span class="token punctuation">.</span><span class="token number">3.3</span> linux<span class="token operator">/</span>amd64
+video<span class="token operator">:</span><span class="token number">1563710179580</span>
+video<span class="token operator">:</span><span class="token number">1563710179580</span>
+video<span class="token operator">:</span><span class="token number">1563710179580</span>
 user2 unsubscribe
 user3 unsubscribe
-video:1563710179581
-</code></pre>
+video<span class="token operator">:</span><span class="token number">1563710179581</span></code><span aria-hidden="true" class="line-numbers-rows" style="white-space: normal; width: auto; left: 0;"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre></div>
 <ul>
-<li>可以由結果看到一開始使用者都訂閱了youtuber, 所以當youtuber上架新影片時(<code>youtuber.setVideo()</code>), 三個user都收到了通知(<code>video:1563710179580</code>), 接著user2, user3退訂了之後, youtuber就只發通知給訂閱中(沒退訂)的user而已</li>
+<li>可以由結果看到一開始使用者都訂閱了youtuber, 所以當youtuber上架新影片時(<code class="language-text">youtuber.setVideo()</code>), 三個user都收到了通知(<code class="language-text">video:1563710179580</code>), 接著user2, user3退訂了之後, youtuber就只發通知給訂閱中(沒退訂)的user而已</li>
 </ul>
-<h2>優點</h2>
+<h2 id="優點" style="position:relative;"><a href="#%E5%84%AA%E9%BB%9E" aria-label="優點 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>優點</h2>
 <ul>
 <li>完美的切割程式碼中會變動的部分，將固定與會變動的部分分開</li>
 <li>定義了通知的傳遞機制</li>
 <li>讓物件與物件間達到鬆散 (loose coupling)</li>
 </ul>
-<h2>結論</h2>
+<h2 id="結論" style="position:relative;"><a href="#%E7%B5%90%E8%AB%96" aria-label="結論 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>結論</h2>
 <ul>
 <li>我們這次介紹的是Push Model，另外還有Pull Model下次有時間再介紹，但基本上概念是相同的，差別僅在於Observer讀取的方式而已。</li>
 </ul>
-<h3>Source Code</h3>
-<p><a href="https://github.com/YiTingLee/Design-Pattern/blob/main/observer-pattern/index.ts">https://github.com/YiTingLee/Design-Pattern/blob/main/observer-pattern/index.ts</a></p></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->8 Oct 2020</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/design-pattern/">Design Pattern</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Working on modern web and web services<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.cakeresume.com/656b08" rel="noopener noreferrer" target="_blank"><strong>Eric Lee</strong> on Cakeresume</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/design-pattern-observer-pattern";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-bfcb07a4b86b0f7301bf.js"],"app":["/app-1118b25a10b793213494.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-241020a1cf7d0f317bbe.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-eadb914010875380852b.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-0a72e764a3e28f78468f.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-0b8c3ebd8ae52c34d7ec.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-f32b1d58317994f4a3d4.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-61f342d8458518a01fad.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-22610fd00f79489268e9.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-131b3f026ad0f87e0f8f.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-c9a3bdc0c94b613711f2.js"]};/*]]>*/</script><script src="/polyfill-bfcb07a4b86b0f7301bf.js" nomodule=""></script><script src="/component---src-templates-post-template-js-22610fd00f79489268e9.js" async=""></script><script src="/643651a62fb35a9bb4f20061cb1f214a352d7976-2ac3f638bf79bf36fbb5.js" async=""></script><script src="/cd95ea5cbd2c605f26db819f07999610c9ff4310-08ce262e735fe5781f14.js" async=""></script><script src="/styles-407fe62976dc5310c43e.js" async=""></script><script src="/app-1118b25a10b793213494.js" async=""></script><script src="/framework-31413af41550353e296a.js" async=""></script><script src="/webpack-runtime-7bca7fea8d7d1cc27059.js" async=""></script></body></html>
+<h3 id="source-code" style="position:relative;"><a href="#source-code" aria-label="source code permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Source Code</h3>
+<p><a href="https://github.com/YiTingLee/Design-Pattern/blob/main/observer-pattern/index.ts" target="_blank" rel="nofollow noopener noreferrer">https://github.com/YiTingLee/Design-Pattern/blob/main/observer-pattern/index.ts</a></p></div></div></div><div class="Post-module--post__footer--3WzWU"><div><p class="Meta-module--meta__date--29eD7">Published <!-- -->8 Oct 2020</p></div><div class="Tags-module--tags--1L_ct"><ul class="Tags-module--tags__list--91FqN"><li class="Tags-module--tags__list-item--1M30P"><a class="Tags-module--tags__list-item-link--3SL_8" href="/tag/design-pattern/">Design Pattern</a></li></ul></div><div class="Author-module--author--2Yefr"><p>Working on modern web and web services<a class="Author-module--author__bio-twitter--n-O9n" href="https://www.cakeresume.com/656b08" rel="noopener noreferrer" target="_blank"><strong>Eric Lee</strong> on Cakeresume</a></p></div></div><div class="Post-module--post__comments--25y6I"></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/design-pattern-observer-pattern";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-bfcb07a4b86b0f7301bf.js"],"app":["/app-1118b25a10b793213494.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-241020a1cf7d0f317bbe.js"],"component---src-templates-categories-list-template-js":["/component---src-templates-categories-list-template-js-eadb914010875380852b.js"],"component---src-templates-category-template-js":["/component---src-templates-category-template-js-0a72e764a3e28f78468f.js"],"component---src-templates-index-template-js":["/component---src-templates-index-template-js-0b8c3ebd8ae52c34d7ec.js"],"component---src-templates-not-found-template-js":["/component---src-templates-not-found-template-js-f32b1d58317994f4a3d4.js"],"component---src-templates-page-template-js":["/component---src-templates-page-template-js-61f342d8458518a01fad.js"],"component---src-templates-post-template-js":["/component---src-templates-post-template-js-22610fd00f79489268e9.js"],"component---src-templates-tag-template-js":["/component---src-templates-tag-template-js-131b3f026ad0f87e0f8f.js"],"component---src-templates-tags-list-template-js":["/component---src-templates-tags-list-template-js-c9a3bdc0c94b613711f2.js"]};/*]]>*/</script><script src="/polyfill-bfcb07a4b86b0f7301bf.js" nomodule=""></script><script src="/component---src-templates-post-template-js-22610fd00f79489268e9.js" async=""></script><script src="/643651a62fb35a9bb4f20061cb1f214a352d7976-2ac3f638bf79bf36fbb5.js" async=""></script><script src="/cd95ea5cbd2c605f26db819f07999610c9ff4310-08ce262e735fe5781f14.js" async=""></script><script src="/styles-407fe62976dc5310c43e.js" async=""></script><script src="/app-1118b25a10b793213494.js" async=""></script><script src="/framework-31413af41550353e296a.js" async=""></script><script src="/webpack-runtime-7bca7fea8d7d1cc27059.js" async=""></script></body></html>
