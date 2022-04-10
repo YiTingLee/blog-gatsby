@@ -50,13 +50,13 @@ Column-oriented 與 Row-oriented 的資料庫之間最大差異就是儲存方�
 column-oriented 儲存方式優點包含
 
 - 適合壓縮(檔案較小)：由於已經根據 Column 把不同資料型態的資料都分開來儲存及處理，這代表著每次儲存前的壓縮都只需要處理相近的資料格式，這種特性對於資料壓縮是非常有效果的。(舉個例子，大多的壓縮方式如 Huffman Coding 在編碼前都會先計算該文字出現的次數來壓縮，這意味著出現越多次的資料可以被壓縮的碼數更少，也就是說資料越分歧壓縮比就會越差）
-- 適合億級資料計算：計算 sum/min/max 時 column-oriented DB 只會把該 query 內的條件 column 拿出來計算，這聽起來很合理，但如上面所說，row-oriented DB 並不是這樣運作，它會把所有"COLUMN"都掃過一遍，所以大大增加了許多 IO 的負擔。這樣的特性在資料量越大的時候感受會越明顯。
+- 適合億級資料計算：計算 sum/min/max 時 column-oriented DB 只會把該 query 內的條件 column 拿出來計算，這聽起來很合理，但如上面所說，row-oriented DB 並不是這樣運作，它會把所有"COLUMN"都掃過一遍，所以大大增加了許多的 IO 負擔。這樣的特性在資料量越大的時候感受會越明顯。
 - 適合資料區間搜尋：例如搜尋某個日期或某個月份的所有資料。
 
 目前聽起來 Column-oriented Database 好像很厲害，又快資料量又小，但 Column-oriented DB 也是有缺點的，缺點如下
 
 - 不適合大量寫入：想下一下，每次有資料要寫入時，都要去找到所有 column 的儲存位置，把資料放進去並重新壓縮再存回去，遠低於 row-oriented 的效率。而且很明顯的 table 的 column 數量會影響寫入速度。
-- 資料量小的時候明顯的效能差異
+- 資料量小的時候不會有明顯的效能差異
 
 ## Row-oriented Database 的使用場景
 
