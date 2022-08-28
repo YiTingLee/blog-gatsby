@@ -1,4 +1,338 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eric Lee]]></title><description><![CDATA[Working on modern web and web services]]></description><link>https://yitinglee.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 27 Aug 2022 18:08:01 GMT</lastBuildDate><item><title><![CDATA[Row-oriented vs Column-oriented Database]]></title><description><![CDATA[聊聊Row-oriented與Column-oriented的介紹與使用場景]]></description><link>https://yitinglee.github.io/posts/row-column-database-intro</link><guid isPermaLink="false">https://yitinglee.github.io/posts/row-column-database-intro</guid><pubDate>Wed, 06 Apr 2022 13:00:00 GMT</pubDate><content:encoded>&lt;p&gt;在這篇文章中我們會聊到&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Eric Lee]]></title><description><![CDATA[Working on modern web and web services]]></description><link>https://yitinglee.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 28 Aug 2022 08:54:51 GMT</lastBuildDate><item><title><![CDATA[Vertical Scaling Postgres with Zero-downtime]]></title><description><![CDATA[聊聊怎麼在不停機的狀況下垂直擴展Postgres]]></description><link>https://yitinglee.github.io/posts/scaling-postgres</link><guid isPermaLink="false">https://yitinglee.github.io/posts/scaling-postgres</guid><pubDate>Sat, 27 Aug 2022 18:00:00 GMT</pubDate><content:encoded>&lt;p&gt;在這篇文章中我們會聊到&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什麼是 Vertical Scaling 與 Horizontal Scaling&lt;/li&gt;
+&lt;li&gt;什麼是 Streaming Replication 與 Logical Replication&lt;/li&gt;
+&lt;li&gt;最小停機時間的 Vertical Scaling 策略&lt;/li&gt;
+&lt;li&gt;Zero-downtime 的 Vertical Scaling 策略&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;什麼是-vertical-scaling-與-horizontal-scaling&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E4%BB%80%E9%BA%BC%E6%98%AF-vertical-scaling-%E8%88%87-horizontal-scaling&quot; aria-label=&quot;什麼是 vertical scaling 與 horizontal scaling permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;什麼是 Vertical Scaling 與 Horizontal Scaling&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;為避免誤會以下說明都是用機器來舉例，但 Vertical Scaling 與 Horizontal Scaling 的擴展方式泛指所有與機器或 Pod 等相關的 Scaling 方法，並不是單純指 Database 的機器&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;vertical-scaling-scaling-up&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#vertical-scaling-scaling-up&quot; aria-label=&quot;vertical scaling scaling up permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Vertical Scaling (Scaling Up)&lt;/h4&gt;
+&lt;p&gt;透過新增機器的 CPU/Memory 或其他硬體資源的方式來提升機器的資源。舉例來說新增 CPU(4 Cores -&gt; 8 Cores)。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 535px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/260c786f09291690785e3f127a7b0699/b5245/scalingup.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 40.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsTAAALEwEAmpwYAAABqElEQVQoz3WS608aURDF94/2W9PER8tDEVMT035pqCCtQuLWEqSAi5S2IGm0iUaXlsUHlYYAQqGw7Aq7v7KrEGzak8zNvSfnTmbmjGCaJtMYv6fpaY2u68hyASmV5vRMxhgObb7VvdMI1qGqKkWlRKfTmSQw7mNomFjSwWBAsaiQlPbZfZ9ASmfYeL1FSpLYPx0ws97kunGLYIlS6Q9sv40QHAn6ms6/cHF5xU4kSmIvRTQW56XPz1OnC18gTCD9m+e7N8QPfyEcHn0lEo3hXvLi8a6i9fu0dQOx0CSmtHhxVCNX6VG9LvNdOSfz8TOuxWWcbg/zT5yEwuJ4MHYIn7I5gm+2ePR4lpVna+ijCrWhyXG1i1zvkb1qU27fclFS7OoSSQmHa4nllVXmRgnDoRA/W7AW76JqBoIsf+OVP8h6YJNyucL/YM04ntxjW3zHosfLgsPN7LxjZE4GMd9nxlcnX+jemVJv3ExctQx5aIph87VanWwuj7gTYW7BiX9jk9L5pd1opaHxo6ZRbWpWQnMyA+P+89+rMr73eioH+S8cn8jTO/Wgkz/rTDtgfPccEQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/260c786f09291690785e3f127a7b0699/8ac56/scalingup.webp 240w,
+/static/260c786f09291690785e3f127a7b0699/d3be9/scalingup.webp 480w,
+/static/260c786f09291690785e3f127a7b0699/e0c9f/scalingup.webp 535w&quot;
+              sizes=&quot;(max-width: 535px) 100vw, 535px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/260c786f09291690785e3f127a7b0699/8ff5a/scalingup.png 240w,
+/static/260c786f09291690785e3f127a7b0699/e85cb/scalingup.png 480w,
+/static/260c786f09291690785e3f127a7b0699/b5245/scalingup.png 535w&quot;
+            sizes=&quot;(max-width: 535px) 100vw, 535px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/260c786f09291690785e3f127a7b0699/b5245/scalingup.png&quot;
+            alt=&quot;Scaling-up&quot;
+            title=&quot;Scaling-up&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h4 id=&quot;horizontal-scaling-scaling-out&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#horizontal-scaling-scaling-out&quot; aria-label=&quot;horizontal scaling scaling out permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Horizontal Scaling (Scaling Out)&lt;/h4&gt;
+&lt;p&gt;透過新增機器數量的方式來讓原本繁重的工作負擔分散到更多的機器身上，常見的 AWS ECS 與 Kuberentes 的 Auto Scaling 都是採用這種方式。舉例來說 10 個 Pods 承受不住目前的流量那就開 20 個 Pods。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 565px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4b92143f68d22e3b3cd4a1073c8d81ff/07eba/scalingout.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABK0lEQVQY022QS0/CQACE+8uNhhjD3RjDo1RECKmIUEop4NuSQnkUkIOJNZiUi2lajGhDdTtuVw8e2GQyl53Z2Y8jhMC2F9B7BvONJwyZ+b6P6cMMetdAfzhCfzBCl+bM8QTGYMjy3Mgco95ogheyyOYKIN8EaxJiuSZ4o3I+v1jZ6n2FO62DiiRDkhWmWr2Baq1OXUU6k0WKPwbXp81n51VsbcdwmMxEc/Do+BDMV+SnDuLaAh8Bgee60Do6xNMy2pdXkGiRorbQbF2gVK6w/P5BAlz0aooXsBPbQ6t9/ffDECFFESkIfhe6rgdZUZFI8iiKJQhHOZzkiygURSTTAmK7cZbnPG+Jm9sOLGv+D1m4EeWT9UxXdimzKeVnomcMMZ7McK/pmL/Y7M4PNQJZ8X8cuVcAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/4b92143f68d22e3b3cd4a1073c8d81ff/8ac56/scalingout.webp 240w,
+/static/4b92143f68d22e3b3cd4a1073c8d81ff/d3be9/scalingout.webp 480w,
+/static/4b92143f68d22e3b3cd4a1073c8d81ff/acb73/scalingout.webp 565w&quot;
+              sizes=&quot;(max-width: 565px) 100vw, 565px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/4b92143f68d22e3b3cd4a1073c8d81ff/8ff5a/scalingout.png 240w,
+/static/4b92143f68d22e3b3cd4a1073c8d81ff/e85cb/scalingout.png 480w,
+/static/4b92143f68d22e3b3cd4a1073c8d81ff/07eba/scalingout.png 565w&quot;
+            sizes=&quot;(max-width: 565px) 100vw, 565px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/4b92143f68d22e3b3cd4a1073c8d81ff/07eba/scalingout.png&quot;
+            alt=&quot;Scaling-out&quot;
+            title=&quot;Scaling-out&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;當 Database 的請求量或工作負載量已經超越資料庫本身機器能負荷的上限時，就需要進行 Scaling。至於該採取哪種 Scaling 方式，我們會需要搭配當下的機器狀況或產品特性來判斷。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;情況 1: 大量 Query 的流量超過機器所能承受時，我們會需要多開幾台 Replica Database。透過多台 Read Database 來分擔 Query 的流量，已達成降低原本 Replica 機器 CPU loading 太重的問題。&lt;/li&gt;
+&lt;li&gt;情況 2: 流量中包含大量的 Mutation 的請求時，Master Database 的 CPU 或 Disk 跟不上請求速度，導致 CPU wait 或 Replication Lag 上升。這種情況會選擇直接提升機器的 CPU 或 IOPS。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;什麼是-streaming-replication-與-logical-replication&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E4%BB%80%E9%BA%BC%E6%98%AF-streaming-replication-%E8%88%87-logical-replication&quot; aria-label=&quot;什麼是 streaming replication 與 logical replication permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;什麼是 Streaming Replication 與 Logical Replication&lt;/h2&gt;
+&lt;h4 id=&quot;streaming-replication&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#streaming-replication&quot; aria-label=&quot;streaming replication permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Streaming Replication&lt;/h4&gt;
+&lt;p&gt;Streaming Replication 是基於 WAL 的一種物理複製的方式，Streaming Replication 最常用在 Master-Slave 的架構中，也是我們常見的 AWS RDS 與 GCP Cloud SQL 的 Read Replica 的實現方式。簡單來說就是從 Master Node 複製 WAL 到 Slave Node 來達成 replication 的目的。由於是物理複製，所以會造成 Slave Node 只能 Read Only 的限制，但也因為是物理複製，幾乎沒有資料遺失的風險。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 498px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/73c740570f495fe4c579b25592f7a200/79e1b/streaming.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 22.916666666666668%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA90lEQVQY052O6UrDUBCF8/5vo3UB0S5iiAVFsZcEmybVps3Sm71NqW2Tz9uIiPjPgcMwh5nvjOZGH7jhlqLaAQ1109Ac1U5/69trd5ovJ13tcRRjGm3RrKBGLA6Iafb7clWyfnnG7nd5v7vFGfSYGzobMWJXVT8Bijr2t5h+3UozRMCDnWK95fh+wHIpWcqYxcTB7PYxTs+571ygn3QYnl0irnu4tkucpHjeHCkTxvM1+sjnUXG0m+GEwZOHcBLCIFTAmCg6QhOiNCfOS+KsbLvMCqIkbwOlkuctWqA1K7gyXhVnhjbxNwg3I5Ql/62i2qsvK8xpzicvgHcUDczwEwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/73c740570f495fe4c579b25592f7a200/8ac56/streaming.webp 240w,
+/static/73c740570f495fe4c579b25592f7a200/d3be9/streaming.webp 480w,
+/static/73c740570f495fe4c579b25592f7a200/71ce1/streaming.webp 498w&quot;
+              sizes=&quot;(max-width: 498px) 100vw, 498px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/73c740570f495fe4c579b25592f7a200/8ff5a/streaming.png 240w,
+/static/73c740570f495fe4c579b25592f7a200/e85cb/streaming.png 480w,
+/static/73c740570f495fe4c579b25592f7a200/79e1b/streaming.png 498w&quot;
+            sizes=&quot;(max-width: 498px) 100vw, 498px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/73c740570f495fe4c579b25592f7a200/79e1b/streaming.png&quot;
+            alt=&quot;Streaming&quot;
+            title=&quot;Streaming&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h4 id=&quot;優點&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%84%AA%E9%BB%9E&quot; aria-label=&quot;優點 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;優點&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;具備高可用性，除了 Master 與 Slave 同時掛了以外，幾乎沒有資料遺失的風險。&lt;/li&gt;
+&lt;li&gt;由於 Slave 是 Master 的複製品，所以不會有因為格式不同而需要更動 Master 上 Schema 的狀況。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;缺點&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E7%BC%BA%E9%BB%9E&quot; aria-label=&quot;缺點 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;缺點&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Slave 只能 Read Only&lt;/li&gt;
+&lt;li&gt;無法支援 Postgres 不同版本的 streaming replication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;logical-replication&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#logical-replication&quot; aria-label=&quot;logical replication permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Logical Replication&lt;/h4&gt;
+&lt;p&gt;Logical Replication 是一種邏輯複製的方式用來複製資料或資料異動，邏輯複製聽起來很抽象，可以想像成就是把 Source Database 端的資料異動透過 Insert/Update/Delete 等的 SQL 命令從發送端送到接收端去執行。Logical Replication 是透過 Publish 與 Subscribe 的模式，所以也能同時支援多個 subscriber，並且發送的最小單位是 Transation。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 498px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/615ec3e01aa1e2e9c28eeaa0153bb66c/79e1b/logical.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 22.916666666666668%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA7klEQVQY052M/2qCYBhGvf9bGYzBGJWt/QDnzLIF6zMpNTeXzT41m9Uq0DNp0AX0wMt5nvePo/jxAf97z3pz5LJUZMURr3bM4j3KeFEiogrhZSy6Ou7TA5+6Rj4csAsCpNVnfK+Svw3YuC7bifNPz6OsqpNyujhgR2V9FYr+HmE6CcKVWI0WLze3mHdNBg0Vx+hjNVUer64ZttoIzUA8azVfTz34CJEyYeSnGCKm50iUjunS6flYdoTMViT5D3K1ZpnlLNPVqafr4rzP/5phOK+FKX17Trs7rT0eihvtELOcOCm4NMVvyeRrix3k/AH+UHLPgPPxTAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/615ec3e01aa1e2e9c28eeaa0153bb66c/8ac56/logical.webp 240w,
+/static/615ec3e01aa1e2e9c28eeaa0153bb66c/d3be9/logical.webp 480w,
+/static/615ec3e01aa1e2e9c28eeaa0153bb66c/71ce1/logical.webp 498w&quot;
+              sizes=&quot;(max-width: 498px) 100vw, 498px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/615ec3e01aa1e2e9c28eeaa0153bb66c/8ff5a/logical.png 240w,
+/static/615ec3e01aa1e2e9c28eeaa0153bb66c/e85cb/logical.png 480w,
+/static/615ec3e01aa1e2e9c28eeaa0153bb66c/79e1b/logical.png 498w&quot;
+            sizes=&quot;(max-width: 498px) 100vw, 498px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/615ec3e01aa1e2e9c28eeaa0153bb66c/79e1b/logical.png&quot;
+            alt=&quot;Logical&quot;
+            title=&quot;Logical&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h4 id=&quot;優點-1&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%84%AA%E9%BB%9E-1&quot; aria-label=&quot;優點 1 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;優點&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;可以選擇指定的 table 就好，不需要整個 Database 做 replication&lt;/li&gt;
+&lt;li&gt;可以跨版本的做 replication，當然就要處理 data type 不相容與 Data Schame Conflict 的問題 (可以參考&lt;a href=&quot;https://github.com/2ndQuadrant/pglogical&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;pglogical&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;不需要 Master-Slave 的架構，兩台 Master 也是 Logical Replication 常見的搭配&lt;/li&gt;
+&lt;li&gt;publisher/subscriber 底層的 pg_wal directory 不需要一樣&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;缺點-1&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E7%BC%BA%E9%BB%9E-1&quot; aria-label=&quot;缺點 1 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;缺點&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;由於 postgres 可以跨版本或 Schema 不一定要相同，需要處理大量的 Conflict，不然會有掉資料的風險&lt;/li&gt;
+&lt;li&gt;不支援 DDL (Create/Alter/Drop 等) 相關的處理&lt;/li&gt;
+&lt;li&gt;當發生衝突時，replication 就會中止，直到衝突被解決&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;最小停機時間的-vertical-scaling-策略&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E6%9C%80%E5%B0%8F%E5%81%9C%E6%A9%9F%E6%99%82%E9%96%93%E7%9A%84-vertical-scaling-%E7%AD%96%E7%95%A5&quot; aria-label=&quot;最小停機時間的 vertical scaling 策略 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;最小停機時間的 Vertical Scaling 策略&lt;/h2&gt;
+&lt;p&gt;前面前情提要那麼多，重點終於要來了。以下舉例的前提都是一台 Master 搭配一台 Replica。&lt;/p&gt;
+&lt;p&gt;先說目的，我們要提升一倍的 Master 與 Replica 的 CPU (舉例 8 Cores -&gt; 16 Cores)。以 GCP 來說，如果從 Conosle UI 或 gcloud CLI 上直接調整機器的 CPU/Memory 的話，大約要 5 分鐘的 downtime 時間。我們可以透過一些簡單的策略來降低這些停機時間的影響。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;切流量的方式有很多，可以透過 pgbouncer 或 DNS 等方式，這邊就不細說&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;以下步驟為 Replica zero-downtime 策略的步驟:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;目前狀況是我們會有一台 Master A(8 cores)與一台 Replica A(8 cores)&lt;/li&gt;
+&lt;li&gt;建立一台 Replica B(16 cores)，大約要 15~20 分鐘的建立時間&lt;/li&gt;
+&lt;li&gt;等 Replica B 準備完成後，將流量導到 Replica B (Replica 升級完成)&lt;/li&gt;
+&lt;li&gt;這時 Replica A 已經沒有任何流量了，升級 Replica A (8 Cores -&gt; 16 Cores)&lt;/li&gt;
+&lt;li&gt;升級 Master A (8 Cores -&gt; 16 Cores)，Mutation 停機時間約 5 分鐘&lt;/li&gt;
+&lt;li&gt;Master A 升級完成後刪除 Replica A (Master 升級完成)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d896df03242e1041bcd7ed9fb0f25344/3f8aa/vertical1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 39.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsTAAALEwEAmpwYAAABL0lEQVQoz4VRi26DMAzk/39x62O8CRRKHiQhjJudNqyVJu2kQJxzzmcnGzqB4prje99hlwVfpwtCCGAoqXD5OME6F+OdcngxtNa4fp6x0J3EMTJYCz9NeJ7C9/1jy59tO+JXPC7vcCn3KRYFHVVSww2zUtDkaO666JYRvIcUAopypJTwFK/r+uDWEHNTN8l9NpK7qmlRVS0a+udFCecsX4lCNZ3VNfN15CUVJevQakZVNzDPln8dOg+ldAy4upSanBl4I2L1ruvpPFD3G840XxYMboKzEp0YIsfORCtonpZm+A+UUsdelhU2ajthnuWxv+c5VuKy1PtfizGOE/K8hOgH9G0LY8whcruNKGhEPXEDzdNo8+4wibwK8kPwSFi4LOs3V96vkZumOwpyfyfuB5T0bYciLyJrAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/d896df03242e1041bcd7ed9fb0f25344/8ac56/vertical1.webp 240w,
+/static/d896df03242e1041bcd7ed9fb0f25344/d3be9/vertical1.webp 480w,
+/static/d896df03242e1041bcd7ed9fb0f25344/e46b2/vertical1.webp 960w,
+/static/d896df03242e1041bcd7ed9fb0f25344/c6c08/vertical1.webp 1337w&quot;
+              sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/d896df03242e1041bcd7ed9fb0f25344/8ff5a/vertical1.png 240w,
+/static/d896df03242e1041bcd7ed9fb0f25344/e85cb/vertical1.png 480w,
+/static/d896df03242e1041bcd7ed9fb0f25344/d9199/vertical1.png 960w,
+/static/d896df03242e1041bcd7ed9fb0f25344/3f8aa/vertical1.png 1337w&quot;
+            sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/d896df03242e1041bcd7ed9fb0f25344/d9199/vertical1.png&quot;
+            alt=&quot;Scaling&quot;
+            title=&quot;Scaling&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;這邊其實我們多做了 Replica A 的升級然後又把 Replica A 刪掉的動作，目的是當步驟 5 的 Master 升級失敗後，我們能夠把 Replica A 直接 Promote 成新的 Master，以降低風險。&lt;/p&gt;
+&lt;h4 id=&quot;那可以直接在步驟-5-就-promote-replica-a-成為新的-master然後再把流量切過去&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E9%82%A3%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E5%9C%A8%E6%AD%A5%E9%A9%9F-5-%E5%B0%B1-promote-replica-a-%E6%88%90%E7%82%BA%E6%96%B0%E7%9A%84-master%E7%84%B6%E5%BE%8C%E5%86%8D%E6%8A%8A%E6%B5%81%E9%87%8F%E5%88%87%E9%81%8E%E5%8E%BB&quot; aria-label=&quot;那可以直接在步驟 5 就 promote replica a 成為新的 master然後再把流量切過去 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;那可以直接在步驟 5 就 Promote Replica A 成為新的 Master，然後再把流量切過去?&lt;/h4&gt;
+&lt;p&gt;由於這邊的場景都是透過 Streaming Replication 來進行資料同步，所以當 Replica A 要 Promote 成為新的 Master 時，Master A 與 Replica A 的 Streaming Replication 的動作就會被中止，所以在 Replica A -&gt; 新 Master -&gt; Master DB 切流量這段時間的資料異動將會流失，所以不建議直接透過 Promote 的方式來處理。&lt;/p&gt;
+&lt;h2 id=&quot;zero-downtime-的-vertical-scaling-策略&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#zero-downtime-%E7%9A%84-vertical-scaling-%E7%AD%96%E7%95%A5&quot; aria-label=&quot;zero downtime 的 vertical scaling 策略 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Zero-downtime 的 Vertical Scaling 策略&lt;/h2&gt;
+&lt;p&gt;延續上面的策略，我們透過新增 Logical Replication 的機制就能達到 Zero-downtime 的目的。&lt;/p&gt;
+&lt;p&gt;Zero-downtime 的步驟:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;目前狀況是我們會有一台 Master A(8 cores)與一台 Replica A(8 cores)&lt;/li&gt;
+&lt;li&gt;建立一台 Replica B(16 cores)，大約要 15~20 分鐘的建立時間&lt;/li&gt;
+&lt;li&gt;等 Replica B 準備完成後，將 Replica B Promte 成 Master B&lt;/li&gt;
+&lt;li&gt;Master A 設定 Logcial Replication 到 Master B&lt;/li&gt;
+&lt;li&gt;從 Master B 新增一台 Replica B (16 cores)&lt;/li&gt;
+&lt;li&gt;將 Read 流量從 Replica A -&gt; 切到 Replica B (Replica 升級完成)&lt;/li&gt;
+&lt;li&gt;將 Mutation 流量從 Master A -&gt; 切到 Master B (Master 升級完成)&lt;/li&gt;
+&lt;li&gt;刪除 Master A 與 Replica A&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e4b19636fb6c44afa5caa6d448f0ffbe/7798c/logical-scaling.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 117.91666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAYCAYAAAD6S912AAAACXBIWXMAAAsTAAALEwEAmpwYAAACuUlEQVQ4y5VVi3KjMAzk/z/xrm0eEML7GQO2cdSVsTlCyc3UnQxYFuuVtFIDwlJa0/XrTOk95S0JIej895OklHZvnk+Kw4iiy9XuNfzPfz6o7x92/8S5X4Hf6LIkM07kPEhm2fJqzHLetjS33fqhTBLyOC+A3trEMQl8ZLCV40jV9UoGYN65z3Lq8pyMY8jncpIHgHwbQquqipIko9PpQrf4TnlekBhGF+JMVV1Z2/Ua4RdSCf+maY8B53mmDAyKoqIR7NgxjhMaB0FTH5OWwp5ZG9LS9z3d78n/c7g1+kKwTauBE4koFDWbHG79fzDcgvrffimlLHOOxl6EPBpXsEOGvjhP77CrIAOE4Y0+Pr5suHVdU+sY7wAdsxXole36jj/lWDHQ+XwB4+445AHVjODgk9zi9nsUr46czyxJIfxkkzd6o0NnaCGFp1kOVNdZ3W2FLYqShrI6LMj2F/gXBlSopBUuZNE5Nh5wAKAoCnvONtbmUfGcsBVEmyHZqdUai7wCm8l1wgyUtmkoSzO63RbRN9i3Xb+kBBdIqICfgR5zEn1tOyTPS5vwO/qUK8osjGpJihy21NratqcSl10wKGrXKXxx+Hmyz0BODyBreojBMt2LVesJqRCkob+ue/woivcb0a5ryLb5UeEt4H6xDjsX4n4ZXFaB8YzcrMJ+PIQVLPcsh1RinG0vWPq9sAOERc3nBQr1hTmaYwoV2AtEuQLyB8ySWcSgf7vFaDf9Ig3+gMNmIM4hX845r6raTiEeHIGvktr0Jj8nlpA5HhyLz5O2Zu8T+PzE0GHuxDwMg+0clsKReI+E7Xb/iiIhWg0gdz2NSfJ2TO2BXzpFTxj7RtnOGJCPGUaFXNRhaHv4XcjvViBFQYNobXJThHxCqFxtHvHCMf4VoE9wGEVWElwprhp3zuj+C/4G8BuHJFLtNacSxgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/e4b19636fb6c44afa5caa6d448f0ffbe/8ac56/logical-scaling.webp 240w,
+/static/e4b19636fb6c44afa5caa6d448f0ffbe/d3be9/logical-scaling.webp 480w,
+/static/e4b19636fb6c44afa5caa6d448f0ffbe/e46b2/logical-scaling.webp 960w,
+/static/e4b19636fb6c44afa5caa6d448f0ffbe/62502/logical-scaling.webp 1183w&quot;
+              sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/e4b19636fb6c44afa5caa6d448f0ffbe/8ff5a/logical-scaling.png 240w,
+/static/e4b19636fb6c44afa5caa6d448f0ffbe/e85cb/logical-scaling.png 480w,
+/static/e4b19636fb6c44afa5caa6d448f0ffbe/d9199/logical-scaling.png 960w,
+/static/e4b19636fb6c44afa5caa6d448f0ffbe/7798c/logical-scaling.png 1183w&quot;
+            sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/e4b19636fb6c44afa5caa6d448f0ffbe/d9199/logical-scaling.png&quot;
+            alt=&quot;Logical-Scaling&quot;
+            title=&quot;Logical-Scaling&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;這個範例只是升級 CPU/Memory，而且兩個 Master 之間的 Schema 也都一致，並不會產生 Logical Replication 的 Data Conflict 的問題，算是比較好處理的場景，如果又加上跨版本的 Postgres 要考慮的情況就會更多了。&lt;/p&gt;
+&lt;h2 id=&quot;結論&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E7%B5%90%E8%AB%96&quot; aria-label=&quot;結論 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;結論&lt;/h2&gt;
+&lt;p&gt;雖然我這邊都是拿 Vertical Scaling 來舉例，但這些策略並非只能用在提升 CPU 或 Memory 的用途，只要把步驟稍微改一下也能將這些策略應用於 Postgres Upgrade/Migration 等需要較長時間的升級。&lt;/p&gt;
+&lt;p&gt;Zero-downtime 的策略雖然能夠達到不停機的目的，但所需要處理的設定也遠比有 downtime 還要多很多，團隊最終決定在夜深人靜的時候直接讓 Master downtime 5 分鐘 XD。希望下次有機會把這些策略應用在 Postgre Upgrade 中並完成 Zero-downtime 的成就。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Row-oriented vs Column-oriented Database]]></title><description><![CDATA[聊聊Row-oriented與Column-oriented的介紹與使用場景]]></description><link>https://yitinglee.github.io/posts/row-column-database-intro</link><guid isPermaLink="false">https://yitinglee.github.io/posts/row-column-database-intro</guid><pubDate>Wed, 06 Apr 2022 13:00:00 GMT</pubDate><content:encoded>&lt;p&gt;在這篇文章中我們會聊到&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;什麼是 Row-oriented Database&lt;/li&gt;
 &lt;li&gt;什麼是 Column-oriented Database&lt;/li&gt;
